@@ -1,0 +1,57 @@
+{
+    "name": "HelloWorld",
+    "methods": [
+        {
+            "name": "hello",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "name"
+                }
+            ],
+            "returns": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "registrar_voto",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "voto"
+                }
+            ],
+            "returns": {
+                "type": "string"
+            },
+            "desc": "Permite votar por uno de los candidatos"
+        },
+        {
+            "name": "read_result",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "voto"
+                }
+            ],
+            "returns": {
+                "type": "uint64"
+            }
+        },
+        {
+            "name": "read_cantidad_votantes",
+            "args": [],
+            "returns": {
+                "type": "uint64"
+            }
+        },
+        {
+            "name": "read_voto",
+            "args": [],
+            "returns": {
+                "type": "uint64"
+            }
+        }
+    ],
+    "networks": {}
+}
