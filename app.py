@@ -27,6 +27,7 @@ app = (
     .apply(bk.unconditional_create_approval, initialize_global_state=True)
     .apply(bk.unconditional_opt_in_approval, initialize_local_state=True)
 )
+
 @app.external
 def hello(name: pt.abi.String,*, output: pt.abi.String) -> pt.Expr:
     return output.set(pt.Bytes("Hola maestro"))
@@ -43,13 +44,15 @@ def registrar_voto(voto: pt.abi.String, *, output: pt.abi.String) -> pt.Expr:
             [voto.get() == pt.Bytes("A"),
                 pt.Seq(
                 app.state.total_votos_A.set(app.state.total_votos_A + pt.Int(1)),
-                output.set(pt.Concat(pt.Bytes("Voto registrados para: "),voto.get())))
+                output.set(pt.Concat(pt.Bytes("Voto registrados para: "),voto.get()))
+                )
             ],
             [voto.get() == pt.Bytes("B"),
                 pt.Seq(app.state.total_votos_B.set(app.state.total_votos_B + pt.Int(1)),
-                output.set(pt.Concat(pt.Bytes("Voto registrados para: "), voto.get())))
+                output.set(pt.Concat(pt.Bytes("Voto registrados para: "), voto.get()))
+                )
             ],
-            ),
+        ),
         app.state.voto_realizado[pt.Txn.sender()].set(pt.Int(1)),  
         app.state.total_votantes.increment()
     )
